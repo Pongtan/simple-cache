@@ -7,8 +7,15 @@ use Psr\SimpleCache\CacheInterface;
 
 class RedisCache implements CacheInterface
 {
+    /**
+     * @var Client
+     */
     private $client;
 
+    /**
+     * RedisCache constructor.
+     * @param Client $client
+     */
     public function __construct(Client $client)
     {
         $this->client = $client;
@@ -56,7 +63,15 @@ class RedisCache implements CacheInterface
     }
 
 
+    /**
+     * @param string $key
+     * @return bool
+     */
     public function has($key)
     {
+        if ($this->client->exists($key)) {
+            return true;
+        }
+        return false;
     }
 }
