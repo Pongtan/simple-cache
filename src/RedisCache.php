@@ -48,7 +48,7 @@ class RedisCache implements CacheInterface
     }
 
 
-    public function getMultiple($keys)
+    public function getMultiple($keys, $default = null)
     {
     }
 
